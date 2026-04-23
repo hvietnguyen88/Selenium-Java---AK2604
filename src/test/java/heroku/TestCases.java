@@ -1,6 +1,5 @@
 package heroku;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,7 +10,6 @@ import org.testng.annotations.Test;
 public class TestCases {
     @Test
     public void loginWithValidCredentials() {
-        WebDriverManager.edgedriver().setup();
 
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--headless=new");

@@ -1,6 +1,5 @@
 package heroku;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,11 +24,7 @@ public class OpenBrowserTest {
 
     @Test
     public void testOpenBrowser() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-
-        WebDriver driver = new ChromeDriver(chromeOptions);
+        WebDriver driver = new ChromeDriver();
         driver.get("https://www.selenium.dev/");
         Assert.assertEquals(driver.getCurrentUrl(),"https://www.selenium.dev/");
         driver.quit();
@@ -37,7 +32,6 @@ public class OpenBrowserTest {
 
     @Test
     void openBrowserWithHeadlessMode(){
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless=new");
 
@@ -49,7 +43,6 @@ public class OpenBrowserTest {
 
     @Test
     void openBrowserWithMobileViewMode(){
-        WebDriverManager.chromedriver().setup();
         Map<String, Object> deviceMetrics = new HashMap<>();
         deviceMetrics.put("width", 344);
         deviceMetrics.put("height", 882);
@@ -57,7 +50,6 @@ public class OpenBrowserTest {
         mobileEmulation.put("deviceMetrics", deviceMetrics);
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         WebDriver driver = new ChromeDriver(chromeOptions);
@@ -68,25 +60,19 @@ public class OpenBrowserTest {
 
     @Test
     void openBrowserWithOldVersion(){
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-        // Note: Use available version; specific versions may not be available in CI
-        // chromeOptions.setBrowserVersion("132");
+        chromeOptions.setBrowserVersion("132");
 
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.selenium.dev/");
         Assert.assertEquals(driver.getTitle(),"Selenium");
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
     void openBrowserWithBetaVersion(){
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-        // Note: Use available version; specific versions may not be available in CI
-        // chromeOptions.setBrowserVersion("149");
+        chromeOptions.setBrowserVersion("149");
 
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.selenium.dev/");
@@ -96,11 +82,7 @@ public class OpenBrowserTest {
 
     @Test
     void openBrowserWithFakeGeoLocation(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-
-        WebDriver driver = new ChromeDriver(chromeOptions);
+        WebDriver driver = new ChromeDriver();
         DevTools devTools = ((HasDevTools) driver).getDevTools();
         devTools.createSession();
         // Mountain view
@@ -123,11 +105,7 @@ public class OpenBrowserTest {
 
     @Test
     void interceptionNetwork(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-
-        WebDriver driver = new ChromeDriver(chromeOptions);
+        WebDriver driver = new ChromeDriver();
         DevTools devTool = ((HasDevTools) driver).getDevTools();
 
         devTool.createSession();
@@ -149,16 +127,11 @@ public class OpenBrowserTest {
         });
 
         driver.get("https://selenium.dev");
-        driver.quit();
     }
 
     @Test
     void openSeleniumHomePageAndCapturePerformanceMetrics(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-
-        ChromeDriver driver = new ChromeDriver(chromeOptions);
+        ChromeDriver driver = new ChromeDriver();
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
         devTools.send(Performance.enable(Optional.empty()));
@@ -175,11 +148,7 @@ public class OpenBrowserTest {
 
     @Test
     void simulate3GNetworkCondition(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
-        
-        ChromeDriver driver = new ChromeDriver(chromeOptions);
+        ChromeDriver driver = new ChromeDriver();
         DevTools devTools = driver.getDevTools();
         devTools.createSession();
         // Enable Network emulation
@@ -197,7 +166,6 @@ public class OpenBrowserTest {
                 Optional.of(false)
         ));
         driver.get("https://selenium.dev");
-        driver.quit();
     }
 
 }
