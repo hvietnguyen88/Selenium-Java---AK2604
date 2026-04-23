@@ -2,18 +2,18 @@ package heroku;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestCases {
     @Test
     public void loginWithValidCredentials() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless=new");
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--headless=new");
 
-        WebDriver driver = new ChromeDriver(chromeOptions);
+        WebDriver driver = new EdgeDriver(edgeOptions);
         driver.get("https://the-internet.herokuapp.com/login");
 
         driver.findElement(By.id("username")).sendKeys("tomsmith");
