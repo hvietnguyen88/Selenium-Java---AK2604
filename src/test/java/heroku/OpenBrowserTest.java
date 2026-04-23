@@ -66,7 +66,7 @@ public class OpenBrowserTest {
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.selenium.dev/");
         Assert.assertEquals(driver.getTitle(),"Selenium");
-//        driver.quit();
+        driver.quit();
     }
 
     @Test
@@ -127,6 +127,7 @@ public class OpenBrowserTest {
         });
 
         driver.get("https://selenium.dev");
+        driver.quit();
     }
 
     @Test
@@ -166,6 +167,7 @@ public class OpenBrowserTest {
                 Optional.of(false)
         ));
         driver.get("https://selenium.dev");
+        driver.quit();
     }
 
 }
