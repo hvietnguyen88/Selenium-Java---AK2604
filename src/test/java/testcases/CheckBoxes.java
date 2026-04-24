@@ -23,7 +23,7 @@ public class CheckBoxes {
     }
 
     @Test
-    void testCheckboxed() {
+    void testCheckboxes() {
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--headless=new");
 
