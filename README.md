@@ -37,7 +37,7 @@ mvn clean install
 
 ### Running Tests
 
-Execute all tests:
+Execute all tests locally:
 ```bash
 mvn test
 ```
@@ -47,17 +47,56 @@ Run a specific test class:
 mvn test -Dtest=OpenBrowserTest
 ```
 
+**Note**: In GitHub Actions CI/CD, `testOpenBrowser()` is excluded because it requires local UI-capable Chrome. Other tests run in headless mode.
+
 ## 📝 Test Cases
 
 ### testOpenBrowser
-- Opens Chrome browser
+- Opens Chrome browser (UI mode)
 - Navigates to https://www.selenium.dev/
 - Verifies the current URL matches expected value
+- **Note**: Requires local Chrome with UI capability; skipped in CI/CD
 
 ### openBrowserWithHeadlessMode
 - Launches Chrome in headless mode (no UI)
 - Navigates to https://www.selenium.dev/
 - Validates the page title is "Selenium"
+
+### openBrowserWithMobileViewMode
+- Launches Chrome with mobile device emulation
+- Sets device metrics (width: 344px, height: 882px)
+- Navigates to https://www.selenium.dev/
+- Validates mobile view rendering
+
+### openBrowserWithOldVersion
+- Attempts to launch Chrome with specific version (132)
+- Tests browser version specification capability
+- Validates page title
+
+### openBrowserWithBetaVersion
+- Launches Chrome with beta version (149)
+- Tests beta browser compatibility
+- Validates page title
+
+### openBrowserWithFakeGeoLocation
+- Launches Chrome with geolocation spoofing
+- Sets fake geolocation to Mountain View
+- Validates location display on the-internet.herokuapp.com
+
+### interceptionNetwork
+- Launches Chrome with network interception enabled
+- Monitors and logs HTTP requests and responses
+- Demonstrates DevTools network monitoring capabilities
+
+### openSeleniumHomePageAndCapturePerformanceMetrics
+- Launches Chrome with performance monitoring
+- Captures performance metrics from selenium.dev
+- Logs metrics like DOM content loaded, page load time, etc.
+
+### simulate3GNetworkCondition
+- Launches Chrome with network throttling
+- Emulates 2G/3G network conditions
+- Demonstrates network speed testing capabilities
 
 ### loginWithValidCredentials
 - Tests login functionality on the-internet.herokuapp.com
@@ -71,9 +110,11 @@ mvn test -Dtest=OpenBrowserTest
 src/
 ├── main/java/tvn/lt2602/
 │   └── Main.java
-├── test/java/heroku/
-│   ├── OpenBrowserTest.java
-│   └── TestCases.java
+├── test/java/
+│   ├── heroku/
+│   │   └── OpenBrowserTest.java
+│   └── testcases/
+│       └── LoginWithValidCredentials.java
 └── resources/
 pom.xml
 testng.xml
@@ -96,6 +137,6 @@ This project is for educational purposes.
 hvietnguyen88
 
 ---
-Last updated: April 23, 2026
+Last updated: April 24, 2026
 
 

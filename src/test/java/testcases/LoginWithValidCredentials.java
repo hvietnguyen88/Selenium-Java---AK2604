@@ -1,4 +1,4 @@
-package heroku;
+package testcases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestCases {
+public class LoginWithValidCredentials {
     @Test
     public void loginWithValidCredentials() {
 
