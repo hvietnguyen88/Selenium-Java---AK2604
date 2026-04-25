@@ -18,10 +18,14 @@ public class DropDown {
 
         Select dropdown = new Select(driver.findElement(By.id("dropdown")));
         dropdown.selectByIndex(1);
-        dropdown.selectByVisibleText("Option 1");
-        dropdown.selectByValue("1");
-
         WebElement option1 = driver.findElement(By.xpath("//option[@value='1']"));
+        Assert.assertTrue(option1.isSelected());
+
+        dropdown.selectByVisibleText("Option 2");
+        WebElement option2 = driver.findElement(By.xpath("//option[@value='2']"));
+        Assert.assertTrue(option2.isSelected());
+
+        dropdown.selectByValue("1");
         Assert.assertTrue(option1.isSelected());
 
         driver.quit();
